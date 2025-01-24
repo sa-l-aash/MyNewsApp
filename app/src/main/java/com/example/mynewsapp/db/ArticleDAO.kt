@@ -8,9 +8,10 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Delete
 
-interface ArticleDAO {
+
 
     @Dao
+
     interface ArticleDAO{
         @Insert(onConflict=OnConflictStrategy.REPLACE)
         suspend fun upsert(article: Article): Long
@@ -22,4 +23,3 @@ interface ArticleDAO {
         suspend fun deleteArticle(article: Article)
 
     }
-}
