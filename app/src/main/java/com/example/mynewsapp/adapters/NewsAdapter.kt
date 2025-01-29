@@ -32,10 +32,11 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         }
     }
 
-    private val differ = AsyncListDiffer(this, differCallback)
+    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
         return ArticleViewHolder(itemView)
     }
 
@@ -47,7 +48,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         val article = differ.currentList[position]
         holder.itemView.apply {
             Glide.with(this).load(article.urlToImage).into(holder.articleImage)
-            holder.articleSource.text = article.source?.name
+            holder.articleSource.text = article.source.name
             holder.articleTitle.text = article.title
             holder.articleDescription.text = article.description
             holder.articleDateTime.text = article.publishedAt

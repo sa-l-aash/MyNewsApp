@@ -8,11 +8,11 @@
         android:id="@+id/articleFragment"
         android:name="com.example.mynewsapp.ui.fragments.ArticleFragment"
         android:label="ArticleFragment" >
-
         <argument
             android:name="article"
             app:argType="com.example.mynewsapp.models.Article" />
     </fragment>
+
     <fragment
         android:id="@+id/headlinesFragment2"
         android:name="com.example.mynewsapp.ui.fragments.HeadlinesFragment"
@@ -20,7 +20,14 @@
         <action
             android:id="@+id/action_headlinesFragment2_to_articleFragment"
             app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_headlinesFragment2_to_searchFragment2"
+            app:destination="@id/searchFragment2" />
+        <action
+            android:id="@+id/action_headlinesFragment2_to_favoritesFragment2"
+            app:destination="@id/favoritesFragment2" />
     </fragment>
+
     <fragment
         android:id="@+id/searchFragment2"
         android:name="com.example.mynewsapp.ui.fragments.SearchFragment"
@@ -29,6 +36,7 @@
             android:id="@+id/action_searchFragment2_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/favoritesFragment2"
         android:name="com.example.mynewsapp.ui.fragments.FavoritesFragment"
@@ -37,4 +45,5 @@
             android:id="@+id/action_favoritesFragment2_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
+
 </navigation>
