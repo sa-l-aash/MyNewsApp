@@ -31,7 +31,6 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
     lateinit var itemHeadlinesError: CardView
     lateinit var binding: FragmentHeadlinesBinding
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHeadlinesBinding.bind(view)
@@ -52,10 +51,9 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
-
             findNavController().navigate(R.id.action_headlinesFragment2_to_articleFragment, bundle)
-
         }
+
         newsViewModel.headlines.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success<*> -> {
@@ -76,23 +74,18 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
                     response.message?.let { message ->
                         Toast.makeText(activity, "sorry Error: $message", Toast.LENGTH_SHORT).show()
                         showErrorMessage(message)
-
                     }
-
                 }
 
                 is Resource.Loading<*> -> {
                     showProgressBar()
                 }
-
             }
         })
 
         retryButton.setOnClickListener {
             newsViewModel.getHeadlines("us")
         }
-
-
     }
 
     var isError = false
@@ -158,9 +151,6 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
             addOnScrollListener(this@HeadlinesFragment.scrollListener)
-
         }
-
     }
-
 }
