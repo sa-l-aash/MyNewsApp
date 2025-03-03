@@ -8,10 +8,9 @@ import androidx.room.TypeConverters
 import com.example.mynewsapp.models.Article
 
 @Database(
-    entities = [Article::class], version = 1
+    entities = [Article::class], version = 2 // Increment the version number here
 )
 @TypeConverters(Converters::class)
-
 abstract class ArticleDatabase : RoomDatabase() {
     abstract fun getArticleDAO(): ArticleDAO
 
@@ -23,13 +22,18 @@ abstract class ArticleDatabase : RoomDatabase() {
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: createDatabase(context).also {
                 instance = it
-
             }
         }
 
         private fun createDatabase(context: Context) = Room.databaseBuilder(
-            context.applicationContext, ArticleDatabase::class.java, "article_db.db"
+            context.applicationContext,
+            ArticleDatabase::class.java, "article_db.db"
+        )
+            //code below is to clear old data on schema change after changing the columns of article table
+            //this is not the best way to handle this but for the sake of simplicity we will use this
+            //the best way is to use migrations in room database
 
-        ).build()
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }
