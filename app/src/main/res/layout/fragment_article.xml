@@ -9,14 +9,15 @@
     <!-- ProgressBar (Initially Visible) -->
     <ProgressBar
         android:id="@+id/progressBar"
-        style="@android:style/Widget.ProgressBar.Small"
+        style="?attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+    <!--above positions the progress bae at the very center of the page -->
 
     <!-- WebView (Initially Hidden) -->
     <WebView
